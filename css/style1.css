@@ -1,0 +1,65 @@
+/* ==========================================================================
+   BỘ MÀU PHIÊN BẢN 1: DYNAMIC TECH & PRODUCTIVITY (ADOBE COLOR)
+   Quy tắc phối màu: Tương đồng & Bổ túc (Analogous + Complementary Accent)
+   ========================================================================== */
+:root {
+    /* Palette Colors từ Adobe Color */
+    --primary-color: #0065FF;         /* Xanh Trello Royal Blue - Màu chủ đạo nhận diện (60%) */
+    --primary-dark: #0747A6;          /* Xanh đậm khi hover/nhấn mạnh */
+    --secondary-color: #00B8D9;       /* Xanh ngọc Cyan/Teal - Bổ trợ tươi mát, sáng tạo (30%) */
+    --secondary-dark: #008DA6;        /* Xanh ngọc đậm */
+    --accent-color: #FF5630;          /* Cam san hô Coral - Điểm nhấn kêu gọi hành động (10%) */
+    --accent-dark: #DE350B;           /* Cam đỏ khi hover */
+    
+    /* Backgrounds & Surfaces */
+    --bg-page: #F4F5F7;               /* Nền trang: Xám xanh sáng nhẹ dịu mắt */
+    --surface-card: #FFFFFF;          /* Nền thẻ nội dung: Trắng tinh khiết */
+    --surface-alt: #EBECF0;           /* Nền khu vực phụ/border */
+    --hero-bg-gradient: linear-gradient(135deg, #0052CC 0%, #0065FF 55%, #00B8D9 100%);
+    --cta-banner-gradient: linear-gradient(135deg, #0747A6 0%, #0065FF 100%);
+    
+    /* Text & Contrast (Đạt chuẩn WCAG AAA > 7:1) */
+    --text-heading: #172B4D;          /* Tiêu đề xanh than đậm, tương phản cực rõ nét */
+    --text-body: #344563;             /* Văn bản xám đậm trung tính, dễ đọc */
+    --text-muted: #6B778C;            /* Chữ phụ trợ */
+    --text-on-primary: #FFFFFF;       /* Chữ trên nền màu chính */
+    
+    /* UI Elements */
+    --tag-bg: #DEEBFF;                /* Nền badge tag */
+    --tag-text: #0747A6;              /* Chữ badge tag */
+    --border-subtle: #DFE1E6;         /* Đường viền mỏng */
+    --shadow-card: 0 4px 16px rgba(9, 30, 66, 0.08);
+    --shadow-hover: 0 12px 28px rgba(9, 30, 66, 0.15);
+}
+
+/* Các lớp tiện ích tùy chỉnh để tái sử dụng */
+.primary-bg { background-color: var(--primary-color) !important; }
+.secondary-bg { background-color: var(--secondary-color) !important; }
+.accent-bg { background-color: var(--accent-color) !important; }
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-secondary-custom { color: var(--secondary-color) !important; }
+.text-accent-custom { color: var(--accent-color) !important; }
+
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+.btn-primary-custom:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.btn-accent-custom {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+.btn-accent-custom:hover {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: #ffffff;
+}

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello Newsletter - Phiên bản 2: Mindful Focus & Organic Elegance</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           BỘ MÀU PHIÊN BẢN 2: MINDFUL FOCUS & ORGANIC ELEGANCE (ADOBE COLOR)
+           Quy tắc phối màu: Bổ túc bộ ba / Tách đôi (Split-Complementary / Triadic)
+           Ý nghĩa: Phong cách sang trọng, điềm tĩnh, thanh lọc tâm trí, hỗ trợ tập trung cao độ (Deep Work)
+           Tỉ lệ vàng: 60% Xanh rêu trầm & nền ngà - 30% Xanh ngọc bích - 10% Vàng hổ phách điểm nhấn
+           ========================================================================== */
+        :root {
+            /* Palette Colors từ Adobe Color */
+            --primary-color: #0E6251;         /* Xanh ngọc lục bảo sâu (Deep Pine/Emerald) - Tĩnh tâm, tập trung */
+            --primary-dark: #084438;          /* Xanh đậm sâu lắng khi hover */
+            --secondary-color: #1ABC9C;       /* Xanh ngọc bích (Jade Green) - Tươi mới, tái tạo năng lượng */
+            --secondary-dark: #148F77;        /* Xanh ngọc đậm */
+            --accent-color: #E67E22;          /* Vàng hổ phách / Cam đất (Warm Amber) - Điểm nhấn ấm cúng, ấn tượng */
+            --accent-dark: #CA6F1E;           /* Hổ phách sẫm khi hover */
+            
+            /* Backgrounds & Surfaces */
+            --bg-page: #F5F7F6;               /* Nền trang: Xám xanh ngà mộc mạc dịu nhẹ */
+            --surface-card: #FFFFFF;          /* Nền thẻ nội dung: Trắng thanh nhã */
+            --surface-alt: #E8F8F5;           /* Nền khu vực phụ: Xanh mát mắt */
+            --hero-bg-gradient: linear-gradient(135deg, #083b31 0%, #0E6251 55%, #1ABC9C 100%);
+            --cta-banner-gradient: linear-gradient(135deg, #094034 0%, #0E6251 100%);
+            
+            /* Text & Contrast (Đạt chuẩn WCAG AAA > 13:1) */
+            --text-heading: #142823;          /* Tiêu đề xanh đen than thẳm, tương phản tuyệt đối */
+            --text-body: #2C3E50;             /* Văn bản than chì mềm mại, chống lóa */
+            --text-muted: #5D6D7E;            /* Chữ phụ trợ */
+            --text-on-primary: #FFFFFF;       /* Chữ trên nền màu chính */
+            
+            /* UI Elements */
+            --tag-bg: #D4EFDF;                /* Nền badge xanh lá nhạt */
+            --tag-text: #0E6251;              /* Chữ badge xanh đậm */
+            --border-subtle: #D5DBDB;         /* Đường viền mộc mạc */
+            --shadow-card: 0 4px 16px rgba(14, 98, 81, 0.08);
+            --shadow-hover: 0 12px 28px rgba(14, 98, 81, 0.15);
+        }
+
+        /* Base Typography & Reset */
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Wrapper chuẩn email newsletter */
+        .newsletter-wrapper {
+            max-width: 680px;
+            margin: 32px auto;
+            background-color: var(--surface-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(14, 98, 81, 0.12);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Preheader Bar */
+        .newsletter-preheader {
+            background-color: #083b31;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.82rem;
+            padding: 8px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Header Bar */
+        .newsletter-header {
+            padding: 28px 32px;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.45rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 3px 10px rgba(14, 98, 81, 0.35);
+        }
+
+        .issue-badge {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 6px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Hero Banner */
+        .newsletter-hero {
+            background: var(--hero-bg-gradient);
+            color: white;
+            padding: 44px 36px;
+            text-align: left;
+            position: relative;
+        }
+
+        .hero-pill {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .hero-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 24px;
+            max-width: 540px;
+        }
+
+        /* Buttons với màu sắc tùy biến */
+        .btn-cta-accent {
+            background-color: var(--accent-color);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            box-shadow: 0 4px 14px rgba(230, 126, 34, 0.4);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-cta-accent:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(230, 126, 34, 0.5);
+        }
+
+        .btn-outline-white {
+            background-color: transparent;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            margin-left: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+        }
+
+        /* Interactive Board Simulation Preview */
+        .hero-visual-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            color: var(--text-heading);
+        }
+
+        .board-sim-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .board-sim-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .sim-col {
+            background-color: var(--bg-page);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sim-col-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sim-card-item {
+            background: white;
+            padding: 8px 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(14, 98, 81, 0.08);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .sim-card-item.accent-border {
+            border-left-color: var(--accent-color);
+        }
+
+        .sim-card-item.teal-border {
+            border-left-color: var(--secondary-color);
+        }
+
+        /* Section Layouts */
+        .content-body {
+            padding: 36px 32px;
+        }
+
+        .section-headline {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtext {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* Cards tính năng */
+        .feature-box {
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            background-color: var(--surface-card);
+            height: 100%;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .feature-box:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .feature-box.primary-theme {
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .feature-box.secondary-theme {
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .feature-icon-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-icon-primary {
+            background-color: var(--tag-bg);
+            color: var(--primary-color);
+        }
+
+        .feature-icon-secondary {
+            background-color: #E8F8F5;
+            color: var(--secondary-dark);
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            margin-bottom: 16px;
+        }
+
+        .feature-link {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .feature-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Metric Highlight Banner (Ấm áp, mộc mạc) */
+        .metric-banner {
+            background-color: #FEF9E7;
+            border-left: 4px solid #F39C12;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .metric-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #B7950B;
+            line-height: 1;
+        }
+
+        .metric-info h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #7D6608;
+            margin-bottom: 4px;
+        }
+
+        .metric-info p {
+            font-size: 0.85rem;
+            color: #5D6D7E;
+            margin-bottom: 0;
+        }
+
+        /* Call To Action Banner Cuối */
+        .cta-box-footer {
+            background: var(--cta-banner-gradient);
+            color: white;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .cta-box-footer h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-box-footer p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .newsletter-footer {
+            background-color: #0E1D19;
+            color: #92A39E;
+            padding: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .footer-social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-social-btn:hover {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .footer-nav {
+            margin-bottom: 16px;
+        }
+
+        .footer-nav a {
+            color: #AAB7B8;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.82rem;
+        }
+
+        .footer-nav a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Palette Inspector Bar (thông tin bảng màu) */
+        .palette-inspector-badge {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 16px auto 0;
+            max-width: 680px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .palette-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 576px) {
+            .newsletter-wrapper {
+                margin: 0;
+                border-radius: 0;
+            }
+            .newsletter-header, .newsletter-hero, .content-body {
+                padding: 24px 20px;
+            }
+            .hero-title {
+                font-size: 1.45rem;
+            }
+            .btn-outline-white {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+            }
+            .board-sim-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Thông tin bảng màu Adobe Color -->
+    <div class="palette-inspector-badge">
+        <div>
+            <strong>🎨 Bảng màu Phiên bản 2:</strong> Mindful Focus & Organic Elegance (Adobe Color)
+        </div>
+        <div class="palette-dots">
+            <span class="color-dot" style="background: #0E6251;" title="Primary: #0E6251 (Deep Pine Green)"></span>
+            <span class="color-dot" style="background: #1ABC9C;" title="Secondary: #1ABC9C (Jade Green)"></span>
+            <span class="color-dot" style="background: #E67E22;" title="Accent CTA: #E67E22 (Warm Amber)"></span>
+            <span class="color-dot" style="background: #F5F7F6;" title="Background: #F5F7F6 (Off-White Calm)"></span>
+            <span class="color-dot" style="background: #142823;" title="Text: #142823 (Deep Forest Shadow)"></span>
+            <span class="badge bg-success text-white ms-2">Quy tắc: Bổ túc bộ ba (Triadic)</span>
+        </div>
+    </div>
+
+    <!-- Khung chính của Newsletter -->
+    <div class="newsletter-wrapper">
+        
+        <!-- Preheader -->
+        <div class="newsletter-preheader">
+            <span>🌿 Bản tin Tối ưu Không Gian Làm Việc & Sống Cân Bằng</span>
+            <span>Số #42 • Mùa Thu 2024</span>
+        </div>
+
+        <!-- Header -->
+        <header class="newsletter-header">
+            <a href="#" class="brand-logo">
+                <div class="brand-logo-icon">
+                    <i class="bi bi-kanban-fill"></i>
+                </div>
+                <span>Trello Mindful</span>
+            </a>
+            <span class="issue-badge">
+                <i class="bi bi-feather me-1"></i> TẬP TRUNG SÂU
+            </span>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="newsletter-hero">
+            <div class="hero-pill">
+                <i class="bi bi-compass-fill"></i> NÂNG TẦM TRẢI NGHIỆM LÀM VIỆC
+            </div>
+            <h1 class="hero-title">Kiến tạo không gian làm việc tĩnh tại và tập trung cao độ</h1>
+            <p class="hero-desc">
+                Loại bỏ sự phân tâm kỹ thuật số. Thiết lập nhịp độ làm việc có ý thức cùng phương pháp quản lý trực quan giúp duy trì dòng chảy sáng tạo suốt cả ngày.
+            </p>
+            <div class="hero-actions">
+                <a href="#" class="btn-cta-accent">
+                    <i class="bi bi-arrow-right-circle-fill"></i> Khám phá không gian
+                </a>
+                <a href="#" class="btn-outline-white">
+                    <i class="bi bi-book-half"></i> Đọc cẩm nang Mindful
+                </a>
+            </div>
+
+            <!-- Visual Board Simulation -->
+            <div class="hero-visual-card">
+                <div class="board-sim-header">
+                    <span><i class="bi bi-layout-three-columns me-1"></i> BẢNG MỤC TIÊU: DEEP WORK & HEALTH</span>
+                    <span class="badge bg-success-subtle text-success">Đang cân bằng</span>
+                </div>
+                <div class="board-sim-columns">
+                    <div class="sim-col">
+                        <div class="sim-col-title">
+                            <span>Ưu tiên tuần này (2)</span>
+                            <i class="bi bi-three-dots"></i>
+                        </div>
+                        <div class="sim-card-item">
+                            Chiến dịch ra mắt Bản tin Quý 4
+                        </div>
+                        <div class="sim-card-item teal-border">
+                            Phối màu Adobe Color phiên bản Eco
+                        </div>
+                    </div>
+                    <div class="sim-col">
+                        <div class="sim-col-title">
+                            <span>Đã hoàn thành (8)</span>
+                            <i class="bi bi-check2-all text-success"></i>
+                        </div>
+                        <div class="sim-card-item accent-border">
+                            Kiểm tra chuẩn dễ đọc WCAG AAA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Body -->
+        <main class="content-body">
+            
+            <!-- Section 1: Giới thiệu -->
+            <div class="mb-4">
+                <h2 class="section-headline">
+                    <i class="bi bi-tree text-success"></i> Điểm sáng đổi mới tuần qua
+                </h2>
+                <p class="section-subtext">
+                    Nâng niu từng khoảnh khắc làm việc với những công cụ được thiết kế để giữ trọn sự bình yên và hiệu suất.
+                </p>
+            </div>
+
+            <!-- Section 2: 2 Khối tính năng theo hướng dẫn bài tập -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="feature-box primary-theme">
+                        <div class="feature-icon-badge feature-icon-primary">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                        <h3 class="feature-title">Chế độ Deep Focus</h3>
+                        <p class="feature-desc">
+                            Ẩn thông báo không khẩn cấp trong khung giờ vàng làm việc. Tự động gom nhóm thẻ việc quan trọng nhất cho sự tập trung liền mạch.
+                        </p>
+                        <a href="#" class="feature-link">
+                            Kích hoạt Deep Focus <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-box secondary-theme">
+                        <div class="feature-icon-badge feature-icon-secondary">
+                            <i class="bi bi-calendar2-heart-fill"></i>
+                        </div>
+                        <h3 class="feature-title">Nhịp điệu Sức khỏe</h3>
+                        <p class="feature-desc">
+                            Nhắc nhở nghỉ giải lao vi mô sau mỗi 50 phút. Theo dõi khối lượng công việc để tránh tình trạng quá tải và kiệt sức cho cả nhóm.
+                        </p>
+                        <a href="#" class="feature-link">
+                            Xem cẩm nang sức khỏe <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric Highlight Banner -->
+            <div class="metric-banner">
+                <div class="metric-number">48%</div>
+                <div class="metric-info">
+                    <h4>Giảm mức độ căng thẳng trong quản lý công việc</h4>
+                    <p>Ghi nhận từ các chuyên gia thiết kế và lập trình viên áp dụng bảng phối màu hữu cơ (Organic Colors).</p>
+                </div>
+            </div>
+
+            <!-- Call to action cuối thư -->
+            <div class="cta-box-footer">
+                <h3>Tìm lại sự thanh thản trong từng mục tiêu</h3>
+                <p>Bắt đầu hành trình quản lý dự án thông minh với năng lượng tích cực từ hôm nay.</p>
+                <a href="#" class="btn-cta-accent">
+                    <i class="bi bi-plus-circle-fill"></i> Trải nghiệm bảng Mindful
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="newsletter-footer">
+            <div class="footer-social-links">
+                <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            </div>
+            
+            <div class="footer-nav">
+                <a href="#">Trung tâm trợ giúp</a> • 
+                <a href="#">Chính sách bảo mật</a> • 
+                <a href="#">Điều khoản sử dụng</a> • 
+                <a href="#">Tùy chỉnh nhận thư</a>
+            </div>
+
+            <p class="mb-1 text-secondary">
+                Bạn nhận được email này vì đã đăng ký bản tin tin cậy từ Trello Mindful Productivity.
+            </p>
+            <p class="mb-0 text-muted" style="font-size: 0.78rem;">
+                © 2024 Trello Inc. & Atlassian. Mọi quyền được bảo lưu.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

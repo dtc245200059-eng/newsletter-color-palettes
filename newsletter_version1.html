@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trello Newsletter - Phiên bản 1: Dynamic Tech & Productivity</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           BỘ MÀU PHIÊN BẢN 1: DYNAMIC TECH & PRODUCTIVITY (ADOBE COLOR)
+           Quy tắc phối màu: Tương đồng & Bổ túc (Analogous + Complementary Accent)
+           Ý nghĩa: Thể hiện tính hiện đại, năng động, chuyên nghiệp và kích thích năng suất
+           Tỉ lệ vàng: 60% Nền/Xanh chính - 30% Xanh ngọc phụ trợ - 10% Cam san hô điểm nhấn
+           ========================================================================== */
+        :root {
+            /* Palette Colors từ Adobe Color */
+            --primary-color: #0065FF;         /* Xanh Trello Royal Blue - Màu chủ đạo nhận diện */
+            --primary-dark: #0747A6;          /* Xanh đậm khi hover/nhấn mạnh */
+            --secondary-color: #00B8D9;       /* Xanh ngọc Cyan/Teal - Bổ trợ tươi mát, sáng tạo */
+            --secondary-dark: #008DA6;        /* Xanh ngọc đậm */
+            --accent-color: #FF5630;          /* Cam san hô Coral - Điểm nhấn kêu gọi hành động (CTA) */
+            --accent-dark: #DE350B;           /* Cam đỏ khi hover */
+            
+            /* Backgrounds & Surfaces */
+            --bg-page: #F4F5F7;               /* Nền trang: Xám xanh sáng nhẹ dịu mắt */
+            --surface-card: #FFFFFF;          /* Nền thẻ nội dung: Trắng tinh khiết */
+            --surface-alt: #EBECF0;           /* Nền khu vực phụ/border */
+            --hero-bg-gradient: linear-gradient(135deg, #0052CC 0%, #0065FF 55%, #00B8D9 100%);
+            --cta-banner-gradient: linear-gradient(135deg, #0747A6 0%, #0065FF 100%);
+            
+            /* Text & Contrast (Đạt chuẩn WCAG AAA > 7:1) */
+            --text-heading: #172B4D;          /* Tiêu đề xanh than đậm, tương phản cực rõ nét */
+            --text-body: #344563;             /* Văn bản xám đậm trung tính, dễ đọc */
+            --text-muted: #6B778C;            /* Chữ phụ trợ */
+            --text-on-primary: #FFFFFF;       /* Chữ trên nền màu chính */
+            
+            /* UI Elements */
+            --tag-bg: #DEEBFF;                /* Nền badge tag */
+            --tag-text: #0747A6;              /* Chữ badge tag */
+            --border-subtle: #DFE1E6;         /* Đường viền mỏng */
+            --shadow-card: 0 4px 16px rgba(9, 30, 66, 0.08);
+            --shadow-hover: 0 12px 28px rgba(9, 30, 66, 0.15);
+        }
+
+        /* Base Typography & Reset */
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-body);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Wrapper chuẩn email newsletter */
+        .newsletter-wrapper {
+            max-width: 680px;
+            margin: 32px auto;
+            background-color: var(--surface-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(9, 30, 66, 0.12);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Header Bar */
+        .newsletter-preheader {
+            background-color: #0747A6;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.82rem;
+            padding: 8px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .newsletter-header {
+            padding: 28px 32px;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.45rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 3px 10px rgba(0, 101, 255, 0.35);
+        }
+
+        .issue-badge {
+            background-color: var(--tag-bg);
+            color: var(--tag-text);
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 6px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Hero Banner */
+        .newsletter-hero {
+            background: var(--hero-bg-gradient);
+            color: white;
+            padding: 44px 36px;
+            text-align: left;
+            position: relative;
+        }
+
+        .hero-pill {
+            background-color: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .hero-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 24px;
+            max-width: 540px;
+        }
+
+        /* Buttons với màu sắc tùy biến */
+        .btn-cta-accent {
+            background-color: var(--accent-color);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            box-shadow: 0 4px 14px rgba(255, 86, 48, 0.4);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-cta-accent:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 86, 48, 0.5);
+        }
+
+        .btn-outline-white {
+            background-color: transparent;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid rgba(255, 255, 255, 0.7);
+            margin-left: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+        }
+
+        /* Interactive Board Simulation Preview */
+        .hero-visual-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: var(--text-heading);
+        }
+
+        .board-sim-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .board-sim-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .sim-col {
+            background-color: var(--bg-page);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sim-col-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sim-card-item {
+            background: white;
+            padding: 8px 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(9, 30, 66, 0.08);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .sim-card-item.accent-border {
+            border-left-color: var(--accent-color);
+        }
+
+        .sim-card-item.teal-border {
+            border-left-color: var(--secondary-color);
+        }
+
+        /* Section Layouts */
+        .content-body {
+            padding: 36px 32px;
+        }
+
+        .section-headline {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-subtext {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        /* Cards tính năng */
+        .feature-box {
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            background-color: var(--surface-card);
+            height: 100%;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .feature-box:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+
+        .feature-box.primary-theme {
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .feature-box.secondary-theme {
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .feature-icon-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-icon-primary {
+            background-color: var(--tag-bg);
+            color: var(--primary-color);
+        }
+
+        .feature-icon-secondary {
+            background-color: #E6FCFF;
+            color: var(--secondary-dark);
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            margin-bottom: 16px;
+        }
+
+        .feature-link {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .feature-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Metric Highlight Banner */
+        .metric-banner {
+            background-color: #EAE6FF;
+            border-left: 4px solid #6554C0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .metric-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #403294;
+            line-height: 1;
+        }
+
+        .metric-info h4 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #253858;
+            margin-bottom: 4px;
+        }
+
+        .metric-info p {
+            font-size: 0.85rem;
+            color: #5E6C84;
+            margin-bottom: 0;
+        }
+
+        /* Call To Action Banner Cuối */
+        .cta-box-footer {
+            background: var(--cta-banner-gradient);
+            color: white;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .cta-box-footer h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cta-box-footer p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .newsletter-footer {
+            background-color: #091E42;
+            color: #97A0AF;
+            padding: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .footer-social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-social-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .footer-nav {
+            margin-bottom: 16px;
+        }
+
+        .footer-nav a {
+            color: #B3BAC5;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.82rem;
+        }
+
+        .footer-nav a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Palette Inspector Bar (thông tin bảng màu) */
+        .palette-inspector-badge {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 16px auto 0;
+            max-width: 680px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .palette-dots {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 576px) {
+            .newsletter-wrapper {
+                margin: 0;
+                border-radius: 0;
+            }
+            .newsletter-header, .newsletter-hero, .content-body {
+                padding: 24px 20px;
+            }
+            .hero-title {
+                font-size: 1.45rem;
+            }
+            .btn-outline-white {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+            }
+            .board-sim-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Thông tin bảng màu Adobe Color -->
+    <div class="palette-inspector-badge">
+        <div>
+            <strong>🎨 Bảng màu Phiên bản 1:</strong> Dynamic Tech & Productivity (Adobe Color)
+        </div>
+        <div class="palette-dots">
+            <span class="color-dot" style="background: #0065FF;" title="Primary: #0065FF (Trello Royal Blue)"></span>
+            <span class="color-dot" style="background: #00B8D9;" title="Secondary: #00B8D9 (Cyan Teal)"></span>
+            <span class="color-dot" style="background: #FF5630;" title="Accent CTA: #FF5630 (Coral Red)"></span>
+            <span class="color-dot" style="background: #F4F5F7;" title="Background: #F4F5F7 (Soft Slate)"></span>
+            <span class="color-dot" style="background: #172B4D;" title="Text: #172B4D (Deep Charcoal)"></span>
+            <span class="badge bg-primary text-white ms-2">Quy tắc: Tương đồng & Bổ túc</span>
+        </div>
+    </div>
+
+    <!-- Khung chính của Newsletter -->
+    <div class="newsletter-wrapper">
+        
+        <!-- Preheader -->
+        <div class="newsletter-preheader">
+            <span>🚀 Bản tin hàng tháng dành cho Đội ngũ Năng suất</span>
+            <span>Số #42 • Tháng 10/2024</span>
+        </div>
+
+        <!-- Header -->
+        <header class="newsletter-header">
+            <a href="#" class="brand-logo">
+                <div class="brand-logo-icon">
+                    <i class="bi bi-kanban-fill"></i>
+                </div>
+                <span>Trello Weekly</span>
+            </a>
+            <span class="issue-badge">
+                <i class="bi bi-stars me-1 text-primary"></i> ĐỔI MỚI QUY TRÌNH
+            </span>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="newsletter-hero">
+            <div class="hero-pill">
+                <i class="bi bi-lightning-charge-fill"></i> TÍNH NĂNG MỚI RA MẮT
+            </div>
+            <h1 class="hero-title">Đột phá năng suất cùng Bảng Không Gian Làm Việc Mới</h1>
+            <p class="hero-desc">
+                Trải nghiệm giao diện trực quan hóa dữ liệu theo thời gian thực. Giúp đội ngũ của bạn phối hợp nhịp nhàng, tối ưu tiến độ và hoàn thành mục tiêu nhanh gấp 2 lần.
+            </p>
+            <div class="hero-actions">
+                <a href="#" class="btn-cta-accent">
+                    <i class="bi bi-arrow-right-circle-fill"></i> Khám phá ngay
+                </a>
+                <a href="#" class="btn-outline-white">
+                    <i class="bi bi-play-circle"></i> Xem video 2 phút
+                </a>
+            </div>
+
+            <!-- Visual Board Simulation -->
+            <div class="hero-visual-card">
+                <div class="board-sim-header">
+                    <span><i class="bi bi-layout-three-columns me-1"></i> BẢNG DỰ ÁN: PHÁT TRIỂN SẢN PHẨM Q4</span>
+                    <span class="badge bg-success-subtle text-success">Đang hoạt động</span>
+                </div>
+                <div class="board-sim-columns">
+                    <div class="sim-col">
+                        <div class="sim-col-title">
+                            <span>Đang thực hiện (3)</span>
+                            <i class="bi bi-three-dots"></i>
+                        </div>
+                        <div class="sim-card-item">
+                            Phối màu giao diện Newsletter
+                        </div>
+                        <div class="sim-card-item teal-border">
+                            Tích hợp Adobe Color Palette
+                        </div>
+                    </div>
+                    <div class="sim-col">
+                        <div class="sim-col-title">
+                            <span>Đã hoàn thành (12)</span>
+                            <i class="bi bi-check2-all text-primary"></i>
+                        </div>
+                        <div class="sim-card-item accent-border">
+                            Kiểm thử độ tương phản WCAG AAA
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Body -->
+        <main class="content-body">
+            
+            <!-- Section 1: Giới thiệu -->
+            <div class="mb-4">
+                <h2 class="section-headline">
+                    <i class="bi bi-fire text-primary"></i> Điểm tin nổi bật trong tuần
+                </h2>
+                <p class="section-subtext">
+                    Chúng tôi liên tục cải tiến để mang lại không gian làm việc liền mạch và đầy cảm hứng nhất cho bạn.
+                </p>
+            </div>
+
+            <!-- Section 2: 2 Khối tính năng theo hướng dẫn bài tập -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="feature-box primary-theme">
+                        <div class="feature-icon-badge feature-icon-primary">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Butler Automation</h3>
+                        <p class="feature-desc">
+                            Tự động hóa mọi tác vụ lặp lại mà không cần viết code. Thiết lập quy tắc chuyển thẻ, gửi email và phân công việc chỉ trong 30 giây.
+                        </p>
+                        <a href="#" class="feature-link">
+                            Tìm hiểu tự động hóa <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-box secondary-theme">
+                        <div class="feature-icon-badge feature-icon-secondary">
+                            <i class="bi bi-puzzle-fill"></i>
+                        </div>
+                        <h3 class="feature-title">Power-Ups 200+</h3>
+                        <p class="feature-desc">
+                            Đồng bộ hóa liền mạch với Slack, Google Drive, Jira và Figma. Mọi công cụ bạn yêu thích đều nằm gọn trong một màn hình duy nhất.
+                        </p>
+                        <a href="#" class="feature-link">
+                            Khám phá tiện ích <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metric Highlight Banner -->
+            <div class="metric-banner">
+                <div class="metric-number">35%</div>
+                <div class="metric-info">
+                    <h4>Nâng cao tỷ lệ hoàn thành dự án đúng hạn</h4>
+                    <p>Khảo sát từ 15.000 doanh nghiệp sử dụng bảng làm việc màu sắc trực quan theo quy chuẩn Trello.</p>
+                </div>
+            </div>
+
+            <!-- Call to action cuối thư -->
+            <div class="cta-box-footer">
+                <h3>Sẵn sàng bứt phá mục tiêu cùng đội nhóm?</h3>
+                <p>Khởi tạo không gian làm việc đầu tiên của bạn chỉ trong vài cú nhấp chuột. Hoàn toàn miễn phí.</p>
+                <a href="#" class="btn-cta-accent">
+                    <i class="bi bi-plus-circle-fill"></i> Tạo bảng làm việc miễn phí
+                </a>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="newsletter-footer">
+            <div class="footer-social-links">
+                <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="footer-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            </div>
+            
+            <div class="footer-nav">
+                <a href="#">Trung tâm trợ giúp</a> • 
+                <a href="#">Chính sách bảo mật</a> • 
+                <a href="#">Điều khoản sử dụng</a> • 
+                <a href="#">Tùy chỉnh nhận thư</a>
+            </div>
+
+            <p class="mb-1 text-secondary">
+                Bạn nhận được email này vì đã đăng ký bản tin tin cậy từ Trello Productivity Digest.
+            </p>
+            <p class="mb-0 text-muted" style="font-size: 0.78rem;">
+                © 2024 Trello Inc. & Atlassian. Mọi quyền được bảo lưu.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

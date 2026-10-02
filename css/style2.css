@@ -1,0 +1,65 @@
+/* ==========================================================================
+   BỘ MÀU PHIÊN BẢN 2: MINDFUL FOCUS & ORGANIC ELEGANCE (ADOBE COLOR)
+   Quy tắc phối màu: Bổ túc bộ ba / Tách đôi (Split-Complementary / Triadic)
+   ========================================================================== */
+:root {
+    /* Palette Colors từ Adobe Color */
+    --primary-color: #0E6251;         /* Xanh ngọc lục bảo sâu (Deep Pine/Emerald) - Tĩnh tâm, tập trung (60%) */
+    --primary-dark: #084438;          /* Xanh đậm sâu lắng khi hover */
+    --secondary-color: #1ABC9C;       /* Xanh ngọc bích (Jade Green) - Tươi mới, tái tạo năng lượng (30%) */
+    --secondary-dark: #148F77;        /* Xanh ngọc đậm */
+    --accent-color: #E67E22;          /* Vàng hổ phách / Cam đất (Warm Amber) - Điểm nhấn ấm cúng (10%) */
+    --accent-dark: #CA6F1E;           /* Hổ phách sẫm khi hover */
+    
+    /* Backgrounds & Surfaces */
+    --bg-page: #F5F7F6;               /* Nền trang: Xám xanh ngà mộc mạc dịu nhẹ */
+    --surface-card: #FFFFFF;          /* Nền thẻ nội dung: Trắng thanh nhã */
+    --surface-alt: #E8F8F5;           /* Nền khu vực phụ: Xanh mát mắt */
+    --hero-bg-gradient: linear-gradient(135deg, #083b31 0%, #0E6251 55%, #1ABC9C 100%);
+    --cta-banner-gradient: linear-gradient(135deg, #094034 0%, #0E6251 100%);
+    
+    /* Text & Contrast (Đạt chuẩn WCAG AAA > 13:1) */
+    --text-heading: #142823;          /* Tiêu đề xanh đen than thẳm, tương phản tuyệt đối */
+    --text-body: #2C3E50;             /* Văn bản than chì mềm mại, chống lóa */
+    --text-muted: #5D6D7E;            /* Chữ phụ trợ */
+    --text-on-primary: #FFFFFF;       /* Chữ trên nền màu chính */
+    
+    /* UI Elements */
+    --tag-bg: #D4EFDF;                /* Nền badge xanh lá nhạt */
+    --tag-text: #0E6251;              /* Chữ badge xanh đậm */
+    --border-subtle: #D5DBDB;         /* Đường viền mộc mạc */
+    --shadow-card: 0 4px 16px rgba(14, 98, 81, 0.08);
+    --shadow-hover: 0 12px 28px rgba(14, 98, 81, 0.15);
+}
+
+/* Các lớp tiện ích tùy chỉnh để tái sử dụng */
+.primary-bg { background-color: var(--primary-color) !important; }
+.secondary-bg { background-color: var(--secondary-color) !important; }
+.accent-bg { background-color: var(--accent-color) !important; }
+.text-primary-custom { color: var(--primary-color) !important; }
+.text-secondary-custom { color: var(--secondary-color) !important; }
+.text-accent-custom { color: var(--accent-color) !important; }
+
+.btn-primary-custom {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+.btn-primary-custom:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.btn-accent-custom {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    font-weight: 700;
+}
+.btn-accent-custom:hover {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+    color: #ffffff;
+}

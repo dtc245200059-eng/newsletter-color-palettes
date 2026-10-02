@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Bài tập: Phối màu cho Newsletter (Trello Edition) - Adobe Color</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --app-primary: #3b82f6;
+            --app-primary-dark: #1d4ed8;
+            --app-bg: #0f172a;
+            --app-card: #1e293b;
+            --app-card-border: #334155;
+            --app-text: #f8fafc;
+            --app-text-muted: #94a3b8;
+            --v1-primary: #0065FF;
+            --v1-secondary: #00B8D9;
+            --v1-accent: #FF5630;
+            --v2-primary: #0E6251;
+            --v2-secondary: #1ABC9C;
+            --v2-accent: #E67E22;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--app-bg);
+            color: var(--app-text);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Glassmorphism & Header */
+        .app-navbar {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--app-card-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .hero-section {
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+            padding: 48px 0 32px;
+            border-bottom: 1px solid var(--app-card-border);
+        }
+
+        .badge-adobe {
+            background: linear-gradient(135deg, #FF0000 0%, #FF6B00 100%);
+            color: white;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .custom-nav-pills .nav-link {
+            color: var(--app-text-muted);
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .custom-nav-pills .nav-link:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .custom-nav-pills .nav-link.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Card Container */
+        .glass-card {
+            background-color: var(--app-card);
+            border: 1px solid var(--app-card-border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Swatches & Chips */
+        .color-chip {
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .color-chip:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .color-chip .hex-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* Preview Frame */
+        .preview-viewport-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: #111827;
+            border-radius: 12px 12px 0 0;
+            border: 1px solid var(--app-card-border);
+            border-bottom: none;
+        }
+
+        .preview-iframe-wrapper {
+            background: #232d3f;
+            border: 1px solid var(--app-card-border);
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 820px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            transition: max-width 0.3s ease;
+        }
+
+        .viewport-btn {
+            background: transparent;
+            border: 1px solid var(--app-card-border);
+            color: var(--app-text-muted);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .viewport-btn.active, .viewport-btn:hover {
+            background: #334155;
+            color: #ffffff;
+            border-color: #475569;
+        }
+
+        /* Toast copy notification */
+        .copy-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #10b981;
+            color: white;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Code snippets */
+        pre.code-block {
+            background: #090d16;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            border: 1px solid #1e293b;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Copy notification -->
+    <div id="copyToast" class="copy-toast">
+        <i class="bi bi-check-circle-fill me-2"></i> <span id="toastMessage">Đã sao chép mã màu!</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="app-navbar py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-primary text-white p-2 rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                    <i class="bi bi-palette2 fs-5"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0 fw-bold text-white">Adobe Color • Newsletter Redesign</h5>
+                    <small class="text-secondary">Thực hành nguyên tắc phối màu UX/UI trên Trello Newsletter</small>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <a href="newsletter_version1.html" target="_blank" class="btn btn-outline-light btn-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-up-right"></i> Mở Phiên bản 1
+                </a>
+                <a href="newsletter_version2.html" target="_blank" class="btn btn-outline-light btn-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-box-arrow-up-right"></i> Mở Phiên bản 2
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Introduction -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <span class="badge-adobe mb-3">
+                <i class="bi bi-award-fill"></i> BÀI TẬP THIẾT KẾ GIAO DIỆN & PHỐI MÀU
+            </span>
+            <h1 class="fw-extrabold display-6 text-white mb-3">Phối Màu Sắc Cho Newsletter</h1>
+            <p class="text-secondary mx-auto" style="max-width: 720px; font-size: 1.05rem;">
+                Ứng dụng công cụ <strong>Adobe Color</strong>, lý thuyết bánh xe màu sắc và tỉ lệ phân bổ <strong>60-30-10</strong> để tạo ra 2 phong cách cảm xúc thị giác hoàn toàn đối lập cho bản tin Trello, đảm bảo tiêu chuẩn tương phản dễ đọc <strong>WCAG AAA</strong>.
+            </p>
+
+            <!-- Navigation Tabs -->
+            <ul class="nav custom-nav-pills justify-content-center mt-4 gap-2" id="mainTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="preview-tab" data-bs-toggle="tab" data-bs-target="#tab-preview" type="button" role="tab">
+                        <i class="bi bi-eye-fill me-1"></i> Trực quan Switcher
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="compare-tab" data-bs-toggle="tab" data-bs-target="#tab-compare" type="button" role="tab">
+                        <i class="bi bi-layout-split me-1"></i> So sánh song song
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="palette-tab" data-bs-toggle="tab" data-bs-target="#tab-palette" type="button" role="tab">
+                        <i class="bi bi-palette me-1"></i> Bảng mã màu & Phân tích
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="guide-tab" data-bs-toggle="tab" data-bs-target="#tab-guide" type="button" role="tab">
+                        <i class="bi bi-github me-1"></i> Hướng dẫn nộp GitHub & CodePen
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Tab Contents -->
+    <main class="container my-5">
+        <div class="tab-content" id="mainTabContent">
+
+            <!-- TAB 1: INTERACTIVE SWITCHER PREVIEW -->
+            <div class="tab-pane fade show active" id="tab-preview" role="tabpanel">
+                
+                <!-- Controller Bar -->
+                <div class="row align-items-center mb-4 g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-secondary fw-semibold small">CHỌN PHIÊN BẢN:</span>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-primary active px-3" id="btnSwitchV1" onclick="switchVersion('newsletter_version1.html', this)">
+                                    <i class="bi bi-lightning-fill text-warning me-1"></i> Bản 1: Dynamic Tech
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary px-3 text-white" id="btnSwitchV2" onclick="switchVersion('newsletter_version2.html', this)">
+                                    <i class="bi bi-feather text-success me-1"></i> Bản 2: Mindful Focus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 text-md-end">
+                        <div class="d-inline-flex align-items-center gap-2">
+                            <span class="text-secondary fw-semibold small">MÔ PHỎNG THIẾT BỊ:</span>
+                            <button class="viewport-btn active" onclick="setViewport('100%', this)" title="Màn hình Desktop">
+                                <i class="bi bi-display me-1"></i> Desktop
+                            </button>
+                            <button class="viewport-btn" onclick="setViewport('600px', this)" title="Màn hình Tablet">
+                                <i class="bi bi-tablet me-1"></i> Tablet
+                            </button>
+                            <button class="viewport-btn" onclick="setViewport('390px', this)" title="Màn hình Điện thoại">
+                                <i class="bi bi-phone me-1"></i> Mobile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Frame Box -->
+                <div class="preview-viewport-controls">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-dark border border-secondary text-secondary" id="previewUrlLabel">
+                            <i class="bi bi-link-45deg"></i> newsletter_version1.html
+                        </span>
+                        <span class="small text-secondary" id="previewDescLabel">
+                            • Phong cách: Hiện đại, năng động, kích thích tương tác
+                        </span>
+                    </div>
+                    <div>
+                        <a id="btnOpenCurrentTab" href="newsletter_version1.html" target="_blank" class="btn btn-sm btn-outline-info">
+                            <i class="bi bi-arrows-fullscreen me-1"></i> Xem toàn màn hình
+                        </a>
+                    </div>
+                </div>
+
+                <div class="preview-iframe-wrapper">
+                    <iframe id="mainPreviewIframe" class="preview-iframe" src="newsletter_version1.html"></iframe>
+                </div>
+
+            </div>
+
+            <!-- TAB 2: SIDE-BY-SIDE COMPARISON -->
+            <div class="tab-pane fade" id="tab-compare" role="tabpanel">
+                <div class="glass-card mb-4 text-center">
+                    <h4 class="fw-bold text-white mb-2">So sánh trực quan hai góc nhìn màu sắc</h4>
+                    <p class="text-secondary mb-0">
+                        Cùng một cấu trúc layout Bootstrap và khối nội dung, nhưng sự thay đổi về palette màu từ Adobe Color lập tức biến đổi hoàn toàn cảm nhận của người đọc: từ sự hối hả, năng lượng công nghệ (Bản 1) sang sự an yên, tập trung cao độ (Bản 2).
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Column 1 -->
+                    <div class="col-lg-6">
+                        <div class="p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center" style="background: rgba(0, 101, 255, 0.15); border: 1px solid rgba(0, 101, 255, 0.4);">
+                            <div>
+                                <h6 class="text-white fw-bold mb-0">Bản 1: Dynamic Tech & Productivity</h6>
+                                <small class="text-info">Tương đồng & Bổ túc (#0065FF • #00B8D9 • #FF5630)</small>
+                            </div>
+                            <a href="newsletter_version1.html" target="_blank" class="btn btn-sm btn-primary">
+                                Mở tab mới <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </div>
+                        <div class="preview-iframe-wrapper p-2" style="background: #1e293b;">
+                            <iframe class="preview-iframe" style="height: 700px;" src="newsletter_version1.html"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="col-lg-6">
+                        <div class="p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center" style="background: rgba(14, 98, 81, 0.2); border: 1px solid rgba(26, 188, 156, 0.4);">
+                            <div>
+                                <h6 class="text-white fw-bold mb-0">Bản 2: Mindful Focus & Organic Elegance</h6>
+                                <small style="color: #48C9B0;">Bổ túc bộ ba Triadic (#0E6251 • #1ABC9C • #E67E22)</small>
+                            </div>
+                            <a href="newsletter_version2.html" target="_blank" class="btn btn-sm text-white" style="background: #0E6251; border: 1px solid #1ABC9C;">
+                                Mở tab mới <i class="bi bi-box-arrow-up-right"></i>
+                            </a>
+                        </div>
+                        <div class="preview-iframe-wrapper p-2" style="background: #1e293b;">
+                            <iframe class="preview-iframe" style="height: 700px;" src="newsletter_version2.html"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PALETTES & COLOR THEORY ANALYSIS -->
+            <div class="tab-pane fade" id="tab-palette" role="tabpanel">
+                
+                <!-- Bảng 1 Breakdown -->
+                <div class="glass-card mb-5">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                        <div>
+                            <span class="badge bg-primary mb-2">PHIÊN BẢN 1</span>
+                            <h3 class="fw-bold text-white mb-1">Dynamic Tech & Productivity</h3>
+                            <p class="text-secondary mb-0">
+                                <strong>Quy tắc Adobe Color:</strong> Tương đồng (Analogous: Xanh dương & Xanh ngọc) kết hợp Bổ túc (Complementary Accent: Cam san hô)
+                            </p>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-success-subtle text-success p-2">
+                                <i class="bi bi-shield-check me-1"></i> Đạt chuẩn WCAG AAA (Contrast > 12:1)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Color Swatches Grid -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #0065FF;" onclick="copyHex('#0065FF')">
+                                <div class="fw-bold">Primary (60%) - Royal Blue</div>
+                                <small>Thương hiệu, Header, Tiêu đề chính</small>
+                                <div><span class="hex-code">#0065FF</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #00B8D9; color: #172B4D;" onclick="copyHex('#00B8D9')">
+                                <div class="fw-bold">Secondary (30%) - Cyan Teal</div>
+                                <small>Biểu tượng phụ, Khối tính năng 2</small>
+                                <div><span class="hex-code text-white">#00B8D9</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #FF5630;" onclick="copyHex('#FF5630')">
+                                <div class="fw-bold">Accent (10%) - Coral Red</div>
+                                <small>Nút kêu gọi hành động CTA, Thẻ chú ý</small>
+                                <div><span class="hex-code">#FF5630</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #F4F5F7; color: #172B4D; border: 1px solid #DFE1E6;" onclick="copyHex('#F4F5F7')">
+                                <div class="fw-bold">Background Surface - Slate Light</div>
+                                <small>Nền trang nhẹ dịu, không gây chói</small>
+                                <div><span class="hex-code text-white">#F4F5F7</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #172B4D;" onclick="copyHex('#172B4D')">
+                                <div class="fw-bold">Text Heading - Deep Navy</div>
+                                <small>Văn bản chính, độ tương phản sắc nét</small>
+                                <div><span class="hex-code">#172B4D</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #0747A6;" onclick="copyHex('#0747A6')">
+                                <div class="fw-bold">Primary Dark - Deep Ocean</div>
+                                <small>Preheader bar, Trạng thái hover nút</small>
+                                <div><span class="hex-code">#0747A6</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25">
+                        <h6 class="text-white fw-bold"><i class="bi bi-lightbulb-fill text-warning me-2"></i>Ý nghĩa tâm lý màu sắc:</h6>
+                        <p class="text-secondary small mb-0">
+                            Xanh dương đại diện cho sự tin cậy, thông minh và công nghệ cao (đặc trưng của Trello & Atlassian). Khi kết hợp cùng sắc xanh ngọc trẻ trung và điểm xuyết bởi màu cam san hô rực rỡ, newsletter tạo cảm giác tràn đầy năng lượng, thúc đẩy người dùng click vào nút CTA để bắt đầu làm việc ngay lập tức.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bảng 2 Breakdown -->
+                <div class="glass-card mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                        <div>
+                            <span class="badge bg-success mb-2">PHIÊN BẢN 2</span>
+                            <h3 class="fw-bold text-white mb-1">Mindful Focus & Organic Elegance</h3>
+                            <p class="text-secondary mb-0">
+                                <strong>Quy tắc Adobe Color:</strong> Bổ túc bộ ba (Triadic / Split-Complementary: Xanh rừng sâu, Xanh ngọc bích & Hổ phách ấm)
+                            </p>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-success-subtle text-success p-2">
+                                <i class="bi bi-shield-check me-1"></i> Đạt chuẩn WCAG AAA (Contrast > 14:1)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Color Swatches Grid -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #0E6251;" onclick="copyHex('#0E6251')">
+                                <div class="fw-bold">Primary (60%) - Deep Emerald</div>
+                                <small>Xanh thông thẳm: Tĩnh tâm, chiều sâu</small>
+                                <div><span class="hex-code">#0E6251</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #1ABC9C; color: #142823;" onclick="copyHex('#1ABC9C')">
+                                <div class="fw-bold">Secondary (30%) - Jade Mint</div>
+                                <small>Xanh ngọc bích: Tái tạo năng lượng</small>
+                                <div><span class="hex-code text-white">#1ABC9C</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #E67E22;" onclick="copyHex('#E67E22')">
+                                <div class="fw-bold">Accent (10%) - Warm Amber</div>
+                                <small>Hổ phách quý phái: Kêu gọi hành động</small>
+                                <div><span class="hex-code">#E67E22</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #F5F7F6; color: #142823; border: 1px solid #D5DBDB;" onclick="copyHex('#F5F7F6')">
+                                <div class="fw-bold">Background Surface - Off-White Calming</div>
+                                <small>Nền ngà tự nhiên, hạn chế mỏi mắt</small>
+                                <div><span class="hex-code text-white">#F5F7F6</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #142823;" onclick="copyHex('#142823')">
+                                <div class="fw-bold">Text Heading - Forest Charcoal</div>
+                                <small>Đen trầm ánh rêu, dễ đọc tuyệt đối</small>
+                                <div><span class="hex-code">#142823</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="color-chip" style="background-color: #084438;" onclick="copyHex('#084438')">
+                                <div class="fw-bold">Primary Dark - Pine Shadow</div>
+                                <small>Preheader bar, Trạng thái hover nút</small>
+                                <div><span class="hex-code">#084438</span> <i class="bi bi-clipboard ms-1 small"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-3 bg-dark border border-secondary border-opacity-25">
+                        <h6 class="text-white fw-bold"><i class="bi bi-lightbulb-fill text-warning me-2"></i>Ý nghĩa tâm lý màu sắc:</h6>
+                        <p class="text-secondary small mb-0">
+                            Xanh lục trầm và ngọc bích gợi lên cảm giác hữu cơ, an lành và tập trung tĩnh lặng (Mindfulness / Deep Work). Màu hổ phách mang hơi hướng mùa thu ấm áp giúp cân bằng lại sắc lạnh của cây cối, mang lại trải nghiệm đọc thư giãn, giảm bớt căng thẳng công việc thường ngày.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TAB 4: SUBMISSION GUIDE -->
+            <div class="tab-pane fade" id="tab-guide" role="tabpanel">
+                <div class="glass-card mb-4">
+                    <h3 class="fw-bold text-white mb-3">
+                        <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>
+                        Hướng dẫn Nộp bài (GitHub & CodePen)
+                    </h3>
+                    <p class="text-secondary">
+                        Bạn có thể chọn nộp bài qua <strong>GitHub Repository (kèm GitHub Pages)</strong> hoặc tạo bài đăng trên <strong>CodePen</strong> theo các bước chi tiết dưới đây:
+                    </p>
+
+                    <div class="row g-4 mt-2">
+                        <!-- Option 1: GitHub -->
+                        <div class="col-lg-6">
+                            <div class="p-4 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155;">
+                                <h5 class="text-white fw-bold d-flex align-items-center gap-2">
+                                    <i class="bi bi-github fs-4 text-white"></i> Cách 1: Đưa lên GitHub (Khuyên dùng)
+                                </h5>
+                                <p class="text-secondary small">
+                                    Giúp lưu trữ toàn bộ dự án gồm cả 2 phiên bản và trang showcase tổng hợp:
+                                </p>
+                                
+                                <ol class="text-secondary small ps-3">
+                                    <li class="mb-2">Mở Terminal tại thư mục dự án và khởi tạo Git:
+                                        <pre class="code-block my-2">git init
+git add .
+git commit -m "feat: redesign newsletter color palettes with Adobe Color"</pre>
+                                    </li>
+                                    <li class="mb-2">Tạo một Repository mới trên GitHub (ví dụ: <code>newsletter-color-palettes</code>).</li>
+                                    <li class="mb-2">Liên kết và đẩy mã nguồn lên GitHub:
+                                        <pre class="code-block my-2">git remote add origin https://github.com/USERNAME/newsletter-color-palettes.git
+git branch -M main
+git push -u origin main</pre>
+                                    </li>
+                                    <li>(Tùy chọn) Bật <strong>GitHub Pages</strong> trong <em>Settings &gt; Pages &gt; Branch: main</em> để có trang web chạy trực tuyến.</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Option 2: CodePen -->
+                        <div class="col-lg-6">
+                            <div class="p-4 rounded-3 h-100" style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155;">
+                                <h5 class="text-white fw-bold d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-slash fs-4 text-warning"></i> Cách 2: Đưa lên CodePen
+                                </h5>
+                                <p class="text-secondary small">
+                                    Dành cho việc trình bày nhanh từng phiên bản trực tuyến:
+                                </p>
+                                
+                                <ol class="text-secondary small ps-3">
+                                    <li class="mb-2">Truy cập <a href="https://codepen.io/pen" target="_blank" class="text-info">codepen.io/pen</a> và đăng nhập tài khoản.</li>
+                                    <li class="mb-2">Mở file <code>newsletter_version1.html</code> (hoặc <code>newsletter_version2.html</code>).</li>
+                                    <li class="mb-2">Vào mục <strong>Settings &gt; CSS</strong> của CodePen:
+                                        <div class="p-2 bg-dark rounded border border-secondary mt-1">
+                                            <code>https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css</code><br>
+                                            <code>https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css</code>
+                                        </div>
+                                    </li>
+                                    <li class="mb-2">Copy phần trong thẻ <code>&lt;style&gt;</code> vào khung CSS, phần trong thẻ <code>&lt;body&gt;</code> vào khung HTML.</li>
+                                    <li>Nhấn <strong>Save</strong> và lấy liên kết URL của Pen để dán vào phần nộp bài.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mẫu văn bản nộp bài -->
+                    <div class="mt-4 p-3 rounded-3 bg-dark border border-primary border-opacity-50">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-white fw-bold small"><i class="bi bi-file-earmark-text text-primary me-1"></i> MẪU VĂN BẢN DÁN VÀO FORM NỘP BÀI:</span>
+                            <button class="btn btn-sm btn-outline-primary" onclick="copyTemplateText()">
+                                <i class="bi bi-clipboard me-1"></i> Sao chép mẫu
+                            </button>
+                        </div>
+                        <pre id="templateSubmissionText" class="code-block mb-0 text-white" style="white-space: pre-wrap;">
+Kính gửi Thầy/Cô, em xin nộp bài tập "Phối màu cho newsletter":
+- Link GitHub Repository: [Điền link GitHub của bạn tại đây]
+- Link Demo Trực tuyến / CodePen:
+  + Phiên bản 1 (Dynamic Tech & Productivity): [Điền link]
+  + Phiên bản 2 (Mindful Focus & Organic Elegance): [Điền link]
+
+Tóm tắt ý tưởng phối màu từ Adobe Color:
+- Phiên bản 1: Áp dụng quy tắc Tương đồng & Bổ túc (Analogous + Complementary). Màu chủ đạo Royal Blue (#0065FF), kết hợp Cyan Teal (#00B8D9) và điểm nhấn nút CTA Coral Red (#FF5630). Mang lại cảm xúc chuyên nghiệp, công nghệ và năng động.
+- Phiên bản 2: Áp dụng quy tắc Bổ túc bộ ba (Triadic). Màu chủ đạo Deep Emerald Green (#0E6251), bổ trợ Jade (#1ABC9C) và điểm nhấn Warm Amber (#E67E22). Tạo không gian làm việc tĩnh tại, giảm căng thẳng (Deep Work).
+- Cả hai phiên bản đều tuân thủ tỉ lệ màu 60-30-10 và đạt chuẩn tương phản trợ năng WCAG AAA.</pre>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center border-top border-secondary border-opacity-25 text-secondary small">
+        <div class="container">
+            <p class="mb-1">Dự án hoàn thành cho Bài tập Phối màu Newsletter • Adobe Color & Bootstrap 5</p>
+            <p class="mb-0 text-muted">Mã nguồn sẵn sàng triển khai trên GitHub, CodePen hoặc Web Hosting.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Switch between Version 1 and Version 2 in live preview
+        function switchVersion(fileUrl, buttonEl) {
+            const iframe = document.getElementById('mainPreviewIframe');
+            const urlLabel = document.getElementById('previewUrlLabel');
+            const descLabel = document.getElementById('previewDescLabel');
+            const btnOpen = document.getElementById('btnOpenCurrentTab');
+            
+            iframe.src = fileUrl;
+            urlLabel.innerHTML = '<i class="bi bi-link-45deg"></i> ' + fileUrl;
+            btnOpen.href = fileUrl;
+
+            // Update button states
+            document.getElementById('btnSwitchV1').className = 'btn btn-outline-secondary px-3 text-white';
+            document.getElementById('btnSwitchV2').className = 'btn btn-outline-secondary px-3 text-white';
+            buttonEl.className = 'btn btn-primary active px-3';
+
+            if (fileUrl.includes('version1')) {
+                descLabel.innerText = '• Phong cách: Hiện đại, năng động, kích thích tương tác';
+            } else {
+                descLabel.innerText = '• Phong cách: Điềm tĩnh, thanh lịch, tập trung sâu (Deep Work)';
+            }
+        }
+
+        // Set device viewport width simulation
+        function setViewport(width, btnEl) {
+            const iframe = document.getElementById('mainPreviewIframe');
+            iframe.style.maxWidth = width;
+
+            document.querySelectorAll('.viewport-btn').forEach(btn => btn.classList.remove('active'));
+            btnEl.classList.add('active');
+        }
+
+        // Copy HEX code
+        function copyHex(hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+                showToast(`Đã sao chép mã màu: ${hex}`);
+            });
+        }
+
+        // Copy submission template text
+        function copyTemplateText() {
+            const text = document.getElementById('templateSubmissionText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Đã sao chép mẫu văn bản nộp bài!');
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('copyToast');
+            const msgEl = document.getElementById('toastMessage');
+            msgEl.innerText = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
